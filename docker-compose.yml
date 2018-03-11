@@ -1,0 +1,16 @@
+version: '3'
+services:
+  db:
+    image: postgres
+  app:
+    build: .
+    command: bundle exec rackup --host 0.0.0.0
+    volumes:
+      - .:/template
+    ports:
+      - "9292:9292"
+    depends_on:
+      - db
+
+volumes:
+  db:
